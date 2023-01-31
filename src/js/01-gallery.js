@@ -24,16 +24,6 @@ function galleryItemsMarkup(galleryItems){
 .join('');
 };
 
-gallery.addEventListener('click',selectGalleryElem);
-
-function selectGalleryElem(evt){
-    evt.preventDefault();
-    if (evt.target.nodeName !== 'IMG'){
-        return;
-    }
-    lightbox.next()
-};
-
 const lightbox = new SimpleLightbox('.gallery a',{
     captionsData: 'alt',
     captionsDelay: 250,
