@@ -8,10 +8,11 @@ const message = document.querySelector('[name="message"]');
 
 form.addEventListener("submit", onFormSubmit);
 form.addEventListener("input", throttle(onFormInput, 500));
+
 function onFormSubmit(event) {
   event.preventDefault();
   event.currentTarget.reset();
-  console.log(localStorage.getItem(STORAGE_KEY));
+  console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
   localStorage.removeItem(STORAGE_KEY);
 }
 
@@ -30,5 +31,16 @@ function localStorageSaveData() {
   if (savedData) {
     email.value = savedData.email;
     message.value = savedData.message;
-  }
+    }
 }
+
+function getStorageData() {
+    const data = localStorage.getItem(STORAGE_KEY);
+    const savedData = JSON.parse(data);
+    if (savedData) {
+ savedData.email ? email.value = savedData.email : email.value = ''
+ savedData.message ? message.value = savedData.message : message.value = ''
+}; 
+};
+
+getStorageData();
